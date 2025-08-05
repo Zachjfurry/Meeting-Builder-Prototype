@@ -19,15 +19,18 @@ def enter_availability():
             'worst_times': [t.strip() for t in worst_times.split(',')]
         }
         data.append(participant)
+        
 
 def calculate_best_time():
-    # For this prototype, let's just print the best times as a placeholder
+    # create an empty dictionary to count votes for the best_times
     print("\nCalculating best time...")
     time_counter = {}
     for participant in data:
         for time in participant['best_times']:
             time_counter[time] = time_counter.get(time, 0) + 1
-    # Sort times by most available
+
+    # Convert the dictionary items into a sorted tuple in decending order with the most votes 
+    # as the first item, then print the result
     sorted_times = sorted(time_counter.items(), key=lambda x: x[1], reverse=True)
     if sorted_times:
         print("Suggested time: ", sorted_times[0][0], "with", sorted_times[0][1], "votes")
