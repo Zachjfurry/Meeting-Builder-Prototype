@@ -1,5 +1,5 @@
 # meeting_time_app.py
-
+import emailSender as e
 # Prototype: Single-user Meeting Time App
 
 # Data structure to hold participant availability
@@ -47,9 +47,12 @@ def main():
     for participant in data:
         email_list.append(participant['email'])
 
-    body = "A team meeting has been scheduled for " + meeting_time 
+    host_password = 'epaquxrgnxtfrtgl'
+    host_email = 'examplestudent8888@gmail.com'
 
-    send_email("Team meeting", body, host_email, host_password, email_list)
+    body = "A team meeting has been scheduled for " + meeting_time
+
+    e.send_email("Team meeting", "hello", host_email, host_password, email_list)
 
 
 if __name__ == "__main__":
