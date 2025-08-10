@@ -13,10 +13,12 @@ def enter_availability():
             break
         best_times = input("Enter best times (comma-separated, e.g. 9-10am,2-3pm): ")
         worst_times = input("Enter worst times (comma-separated, e.g. 12-1pm,4-5pm): ")
+        email = input("Enter participants email address: ")
         participant = {
             'name': name,
             'best_times': [t.strip() for t in best_times.split(',')],
-            'worst_times': [t.strip() for t in worst_times.split(',')]
+            'worst_times': [t.strip() for t in worst_times.split(',')],
+            'email': email,
         }
         data.append(participant)
         
@@ -41,6 +43,14 @@ def main():
     print("=== Meeting Time App Prototype ===")
     enter_availability()
     calculate_best_time()
+    email_list = []
+    for participant in data:
+        email_list.append(participant['email'])
+
+    body = "A team meeting has been scheduled for " + meeting_time 
+
+    send_email("Team meeting", body, host_email, host_password, email_list)
+
 
 if __name__ == "__main__":
     main()
